@@ -38,9 +38,11 @@ abstract class Kohana_OAuth_Token {
 	protected $token;
 
 	/**
-	 * @var  string  token secret
+	 * @var  string  required parameters
 	 */
-	protected $secret;
+	protected $required = array(
+		'token',
+	);
 
 	/**
 	 * Sets the token and secret values.
@@ -50,21 +52,16 @@ abstract class Kohana_OAuth_Token {
 	 */
 	public function __construct(array $options = NULL)
 	{
-		if ( ! isset($options['token']))
+		foreach ($this->required as $key)
 		{
-			throw new Kohana_OAuth_Exception('Required option not passed: :option',
-				array(':option' => 'token'));
+			if ( ! isset($options[$key]))
+			{
+				throw new Kohana_OAuth_Exception('Required option not passed: :option',
+					array(':option' => $key));
+			}
+
+			$this->$key = $options[$key];
 		}
-
-		if ( ! isset($options['secret']))
-		{
-			throw new Kohana_OAuth_Exception('Required option not passed: :option',
-				array(':option' => 'secret'));
-		}
-
-		$this->token = $options['token'];
-
-		$this->secret = $options['secret'];
 	}
 
 	/**

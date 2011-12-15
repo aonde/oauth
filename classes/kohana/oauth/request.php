@@ -462,6 +462,8 @@ class Kohana_OAuth_Request {
 	 */
 	public function execute(array $options = NULL)
 	{
+	   
+	   
 		// Check that all required fields are set
 		$this->check();
 

@@ -11,6 +11,14 @@
  */
 class Kohana_OAuth_Request_Credentials extends OAuth_Request {
 
-
+	protected $required = array(
+		'oauth_consumer_key' => TRUE,
+		'oauth_token' => TRUE,
+		'oauth_signature_method' => TRUE,
+		'oauth_signature' => TRUE,
+		'oauth_timestamp' => TRUE,
+		'oauth_nonce' => TRUE,
+		'oauth_version' => TRUE,
+	);
 
 } // End OAuth_Request_Credentials

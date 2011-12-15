@@ -14,9 +14,19 @@ class Kohana_OAuth_Token_Request extends OAuth_Token {
 	protected $name = 'request';
 
 	/**
+	 * @var  string  token secret
+	 */
+	protected $secret;
+
+	/**
 	 * @var  string  request token verifier
 	 */
 	protected $verifier;
+
+	protected $required = array(
+		'token',
+		'secret',
+	);
 
 	/**
 	 * Change the token verifier.

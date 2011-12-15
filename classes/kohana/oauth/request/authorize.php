@@ -20,7 +20,7 @@ class Kohana_OAuth_Request_Authorize extends OAuth_Request {
 
 	public function execute(array $options = NULL)
 	{
-		return Request::instance()->redirect($this->as_url());
+		return Request::current()->redirect($this->as_url());
 	}
 
 } // End OAuth_Request_Authorize
