@@ -128,7 +128,7 @@ abstract class Kohana_OAuth {
 		if (is_array($input))
 		{
 			// Decode the values of the array
-			return array_map(array('OAuth', 'urldecode'), $input);
+			return array_map(array('OAuthfog', 'urldecode'), $input);
 		}
 
 		// Decode the input
