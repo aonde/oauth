@@ -60,11 +60,11 @@ abstract class Kohana_OAuth_Signature {
 	 */
 	public function key(OAuth_Consumer $consumer, OAuth_Token $token = NULL)
 	{
-		$key = OAuth::urlencode($consumer->secret).'&';
+		$key = OAuthfog::urlencode($consumer->secret).'&';
 
 		if ($token)
 		{
-			$key .= OAuth::urlencode($token->secret);
+			$key .= OAuthfog::urlencode($token->secret);
 		}
 
 		return $key;

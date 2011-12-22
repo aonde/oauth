@@ -1,4 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
+
 /**
  * OAuth Library
  *
@@ -41,7 +42,7 @@ abstract class Kohana_OAuth {
 
 		// Open a new remote connection
 		$remote = curl_init($url);
-
+        curl_setopt($remote, CURLOPT_SSL_VERIFYPEER, false);
 		// Set connection options
 		if ( ! curl_setopt_array($remote, $options))
 		{
@@ -154,8 +155,8 @@ abstract class Kohana_OAuth {
 		}
 
 		// Encode the parameter keys and values
-		$keys   = OAuth::urlencode(array_keys($params));
-		$values = OAuth::urlencode(array_values($params));
+		$keys   = OAuthfog::urlencode(array_keys($params));
+		$values = OAuthfog::urlencode(array_values($params));
 
 		// Recombine the parameters
 		$params = array_combine($keys, $values);
@@ -211,7 +212,7 @@ abstract class Kohana_OAuth {
 			list($url) = explode('?', $url, 2);
 
 			// Parse the query string as request parameters
-			$params = OAuth::parse_params($query);
+			$params = OAuthfog::parse_params($query);
 		}
 		else
 		{
@@ -249,8 +250,8 @@ abstract class Kohana_OAuth {
 			list($name, $value) = explode('=', $param, 2);
 
 			// Decode the name and value
-			$name  = OAuth::urldecode($name);
-			$value = OAuth::urldecode($value);
+			$name  = OAuthfog::urldecode($name);
+			$value = OAuthfog::urldecode($value);
 
 			if (isset($parsed[$name]))
 			{

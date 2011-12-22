@@ -87,7 +87,8 @@ class Kohana_OAuth_Request {
 
 		// Separate the URL and query string, which will be used as additional
 		// default parameters
-		list ($url, $default) = OAuth::parse_url($url);
+        // tive que criar uma outra class OAuthfog pq no phpfog da conflito com o Oauth do php
+		list ($url, $default) = OAuthfog::parse_url($url);
 
 		// Set the request URL
 		$this->url = $url;
@@ -107,7 +108,7 @@ class Kohana_OAuth_Request {
 		if ($this->required('oauth_version') AND ! isset($this->params['oauth_version']))
 		{
 			// Set the version of this request
-			$this->params['oauth_version'] = OAuth::$version;
+			$this->params['oauth_version'] = OAuthfog::$version;
 		}
 
 		if ($this->required('oauth_timestamp') AND ! isset($this->params['oauth_timestamp']))
@@ -194,8 +195,8 @@ class Kohana_OAuth_Request {
 		// method & url & sorted-parameters
 		return implode('&', array(
 			$this->method,
-			OAuth::urlencode($url),
-			OAuth::urlencode(OAuth::normalize_params($params)),
+			OAuthfog::urlencode($url),
+			OAuthfog::urlencode(OAuthfog::normalize_params($params)),
 		));
 	}
 
@@ -338,7 +339,7 @@ class Kohana_OAuth_Request {
 			{
 				// OAuth Spec 5.4.1
 				// "Parameter names and values are encoded per Parameter Encoding [RFC 3986]."
-				$header[] = OAuth::urlencode($name).'="'.OAuth::urlencode($value).'"';
+				$header[] = OAuthfog::urlencode($name).'="'.OAuthfog::urlencode($value).'"';
 			}
 		}
 
@@ -383,7 +384,7 @@ class Kohana_OAuth_Request {
 			}
 		}
 
-		return $as_string ? OAuth::normalize_params($params) : $params;
+		return $as_string ? OAuthfog::normalize_params($params) : $params;
 	}
 
 	/**
@@ -505,7 +506,7 @@ class Kohana_OAuth_Request {
 			$url = "{$url}?{$query}";
 		}
 
-		return OAuth::remote($url, $options);
+		return OAuthfog::remote($url, $options);
 	}
 
 } // End OAuth_Request
