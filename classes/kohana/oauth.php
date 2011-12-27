@@ -42,7 +42,9 @@ abstract class Kohana_OAuth {
 
 		// Open a new remote connection
 		$remote = curl_init($url);
+        
         curl_setopt($remote, CURLOPT_SSL_VERIFYPEER, false);
+        
 		// Set connection options
 		if ( ! curl_setopt_array($remote, $options))
 		{
@@ -70,8 +72,8 @@ abstract class Kohana_OAuth {
 
 		if (isset($error))
 		{
-			throw new Kohana_OAuth_Exception('Error fetching remote :url [ status :code ] :error',
-				array(':url' => $url, ':code' => $code, ':error' => $error));
+			throw new Kohana_OAuth_Exception('Error fetching remote :url [ status :code ] :error :options',
+				array(':url' => $url, ':code' => $code, ':error' => $error, ':options' => $options));
 		}
 
 		return $response;

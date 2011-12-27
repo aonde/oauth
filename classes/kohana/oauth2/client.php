@@ -82,8 +82,11 @@ class Kohana_OAuth2_Client {
 	 */
 	public function callback($callback)
 	{
-		$this->callback = $callback;
-
+	   
+       //if (strpos($callback, 'http') == FALSE) $this->callback = URL::site(NULL, TRUE).$callback;
+       $this->callback = $callback; 
+		
+        
 		return $this;
 	}
 

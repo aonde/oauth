@@ -125,6 +125,7 @@ abstract class Kohana_OAuth_Provider {
 	public function request_token(OAuth_Consumer $consumer, array $params = NULL)
 	{
 		// Create a new GET request for a request token with the required parameters
+        
 		$request = OAuth_Request::factory('token', 'GET', $this->url_request_token(), array(
 			'oauth_consumer_key' => $consumer->key,
 			'oauth_callback'     => $consumer->callback,

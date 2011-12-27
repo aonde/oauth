@@ -35,7 +35,7 @@ abstract class Kohana_OAuth2_Provider {
 			// Load user parameters
 			$request->params($params);
 		}
-
+        
 		return $request->as_url();
 	}
 
